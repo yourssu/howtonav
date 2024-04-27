@@ -5,19 +5,7 @@
       <entry key="app">
         <State />
       </entry>
-      <entry key="feature">
-        <State />
-      </entry>
-      <entry key="feature.auth">
-        <State />
-      </entry>
-      <entry key="feature.drawer">
-        <State />
-      </entry>
-      <entry key="feature.home">
-        <State />
-      </entry>
-      <entry key="feature.navigation">
+      <entry key="test deep link">
         <State />
       </entry>
     </value>
