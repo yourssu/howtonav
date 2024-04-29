@@ -1,17 +1,12 @@
 package com.yourssu.navigation
 
 import android.app.Activity
-import android.content.Intent
 import android.util.Log
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -22,16 +17,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.capitalize
-import androidx.compose.ui.text.toUpperCase
-import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
 import com.yourssu.auth.authfeature.TempAuthFeatureScreen
 import com.yourssu.drawer.drawerfeature.addDrawerFeatureRoute
@@ -54,7 +47,7 @@ fun NavigationScreen() {
         Log.d("NavigationScreen", "pathSegments : ${it?.data?.pathSegments}")
     }
 
-    val firstPath = intent?.data?.path?.split("/")?.get(1)
+    val firstPath = intent?.data?.pathSegments?.first()
     Log.d("NavigationScreen", "firstPath: $firstPath")
 
     var navigationSelectedItem by remember {
@@ -94,7 +87,7 @@ fun NavigationScreen() {
     ) { paddingValues ->
         NavHost(
             navController = navController,
-            startDestination = firstPath?.uppercase() ?: "AUTH",
+            startDestination = "HOME/{data}",
             modifier = Modifier.padding(paddingValues = paddingValues)
         ) {
             composable(
@@ -103,17 +96,21 @@ fun NavigationScreen() {
                     uriPattern = "https://howtonav.com/auth"
                 })
             ) {
-                TempAuthFeatureScreen()
+                TempAuthFeatureScreen(navController = navController)
             }
             composable(
-                "HOME",
+                "HOME/{data}",
                 deepLinks = listOf(navDeepLink {
                     uriPattern = "https://howtonav.com/home/{menu}"
+                }),
+                arguments = listOf(navArgument("data") {
+                    type = NavType.StringType
+                    defaultValue = "DEFAULT_VALUE"
                 })
             ) {
-//                TempHomeFeatureScreen()
+                val data = it.arguments?.getString("data")
                 val menu = it.arguments?.getString("menu")
-                Text(text = "HOME $menu")
+                TempHomeFeatureScreen(menu, data)
             }
             addDrawerFeatureRoute(navController = navController)
         }
@@ -137,7 +134,7 @@ data class BottomNavigationItem(
             BottomNavigationItem(
                 label = "HOME",
                 icon = Icons.Filled.Home,
-                route = "HOME"
+                route = "HOME/{data}"
             ),
             BottomNavigationItem(
                 label = "DRAWER",
