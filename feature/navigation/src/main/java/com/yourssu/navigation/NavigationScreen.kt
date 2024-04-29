@@ -1,17 +1,12 @@
 package com.yourssu.navigation
 
 import android.app.Activity
-import android.content.Intent
 import android.util.Log
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -22,13 +17,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.capitalize
-import androidx.compose.ui.text.toUpperCase
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -106,14 +97,13 @@ fun NavigationScreen() {
                 TempAuthFeatureScreen()
             }
             composable(
-                "HOME",
+                "HOME/{data}",
                 deepLinks = listOf(navDeepLink {
-                    uriPattern = "https://howtonav.com/home/{menu}"
+                    uriPattern = "https://howtonav.com/home"
                 })
             ) {
-//                TempHomeFeatureScreen()
-                val menu = it.arguments?.getString("menu")
-                Text(text = "HOME $menu")
+                val menu = it.arguments?.getString("data")
+                TempHomeFeatureScreen(menu ?: "null")
             }
             addDrawerFeatureRoute(navController = navController)
         }
@@ -137,7 +127,7 @@ data class BottomNavigationItem(
             BottomNavigationItem(
                 label = "HOME",
                 icon = Icons.Filled.Home,
-                route = "HOME"
+                route = "HOME/yourssu"
             ),
             BottomNavigationItem(
                 label = "DRAWER",
