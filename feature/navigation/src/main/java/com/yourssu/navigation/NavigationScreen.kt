@@ -9,12 +9,18 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
 import com.yourssu.auth.authfeature.TempAuthFeatureScreen
 import com.yourssu.drawer.drawerfeature.addDrawerFeatureRoute
@@ -41,6 +47,17 @@ fun NavigationScreen() {
     Log.d("NavigationScreen", "firstPath: $firstPath")
 
     val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
+
+    var navigationSelectedItem by remember {
+        mutableIntStateOf(
+            when (firstPath) {
+                "auth" -> 0
+                "home" -> 1
+                "drawer" -> 2
+                else -> 0
+            }
+        )
+    }
 
     Scaffold(
         bottomBar = {
@@ -81,8 +98,13 @@ fun NavigationScreen() {
                 "HOME",
                 deepLinks = listOf(navDeepLink {
                     uriPattern = "https://howtonav.com/home{menu}"
+                }),
+                arguments = listOf(navArgument("data") {
+                    type = NavType.StringType
+                    defaultValue = "DEFAULT_VALUE"
                 })
             ) {
+                val data = it.arguments?.getString("data")
                 val menu = it.arguments?.getString("menu")
                 TempHomeFeatureScreen(menu ?: "null")
             }

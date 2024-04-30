@@ -12,18 +12,18 @@ enum class BottomNavigationItem(
     val route: String = "",
 ) {
     AUTH(
-        "AUTH",
+        NavigationRoute.AUTH,
         Icons.Filled.AccountCircle,
-        "AUTH"
+        NavigationRoute.AUTH
     ),
     HOME(
-        "HOME",
+        NavigationRoute.HOME,
         Icons.Filled.Home,
-        "HOME"
+        NavigationRoute.HOME
     ),
     DRAWER(
-        "DRAWER",
+        NavigationRoute.DRAWER,
         Icons.Filled.Favorite,
-        "DRAWER"
+        NavigationRoute.DRAWER
     );
 }
