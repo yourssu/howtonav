@@ -17,7 +17,7 @@ enum class BottomNavigationItem(
         NavigationRoute.AUTH
     ),
     HOME(
-        NavigationRoute.HOME,
+       "HOME",
         Icons.Filled.Home,
         NavigationRoute.HOME
     ),
