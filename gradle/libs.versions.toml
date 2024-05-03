@@ -10,8 +10,13 @@ activityCompose = "1.8.2"
 composeBom = "2023.08.00"
 appcompat = "1.6.1"
 material = "1.11.0"
-compose_nav_version = "2.7.7"
+nav_version = "2.7.7"
 compose_nav_hilt_version = "1.0.0"
+navigationFragmentKtx = "2.8.0-alpha07"
+navigationUiKtx = "2.8.0-alpha07"
+navigationFragment = "2.7.7"
+activity = "1.8.0"
+constraintlayout = "2.1.4"
 
 
 [libraries]
@@ -31,10 +36,14 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-compose_navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "compose_nav_version" }
+compose_navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "nav_version" }
 compose-hilt_navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "compose_nav_hilt_version" }
+androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "nav_version" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
 

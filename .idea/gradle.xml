@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/feature/drawer" />
             <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/navigation" />
+            <option value="$PROJECT_DIR$/feature/setting" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

@@ -51,6 +51,10 @@ android {
 
 dependencies {
     implementation(project(":feature:navigation"))
+    implementation(project(":feature:auth"))
+    implementation(project(":feature:drawer"))
+    implementation(project(":feature:home"))
+    implementation(project(":feature:setting"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -61,8 +65,12 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+    implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.compose.navigation)
     implementation(libs.compose.hilt.navigation)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.activity)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

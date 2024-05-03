@@ -65,6 +65,7 @@ dependencies {
 
     implementation(libs.compose.navigation)
     implementation(libs.compose.hilt.navigation)
+    implementation(libs.androidx.navigation.fragment.ktx)
 
 
     testImplementation(libs.junit)
