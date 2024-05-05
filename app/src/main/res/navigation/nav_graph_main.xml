@@ -6,12 +6,11 @@
 
     <fragment
         android:id="@+id/nav_setting"
-        android:name="com.yourssu.setting.SettingFragment"/>
+        android:name="com.yourssu.setting.SettingFragment" />
 
-<!--    안 되네요.. -->
-<!--    <composable-->
-<!--        android:id="@+id/nav_home_screen"-->
-<!--        android:name="com.yourssu.home.HomeScreenKt\$HomeScreen" />-->
+    <composable
+        android:id="@+id/nav_home_screen"
+        android:name="com.yourssu.home.HomeScreenKt\$Content" />
 
 
 </navigation>

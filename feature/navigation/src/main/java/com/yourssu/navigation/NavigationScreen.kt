@@ -20,17 +20,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavType
-import androidx.navigation.activity
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
-import com.yourssu.auth.authfeature.TempAuthFeatureScreen
-import com.yourssu.drawer.drawerfeature.addDrawerFeatureRoute
-import com.yourssu.home.homefeature.TempHomeFeatureScreen
 
 @Composable
 fun NavigationScreen() {
@@ -98,7 +93,7 @@ fun NavigationScreen() {
                     uriPattern = "https://howtonav.com/auth"
                 })
             ) {
-                TempAuthFeatureScreen(navController = navController)
+//                TempAuthFeatureScreen(navController = navController)
             }
             composable(
                 "HOME/{data}",
@@ -112,9 +107,9 @@ fun NavigationScreen() {
             ) {
                 val data = it.arguments?.getString("data")
                 val menu = it.arguments?.getString("menu")
-                TempHomeFeatureScreen(menu, data)
+//                TempHomeFeatureScreen(menu, data)
             }
-            addDrawerFeatureRoute(navController = navController)
+//            addDrawerFeatureRoute(navController = navController)
         }
     }
 }

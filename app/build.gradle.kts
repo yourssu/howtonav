@@ -50,7 +50,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature:navigation"))
     implementation(project(":feature:auth"))
     implementation(project(":feature:drawer"))
     implementation(project(":feature:home"))
@@ -65,9 +64,13 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.compose.navigation)
     implementation(libs.compose.hilt.navigation)
+    implementation(libs.androidx.navigation.fragment.ktx)
+
+    implementation(libs.androidx.navigation.fragment.compose) // 이 의존성이 있어야 composable 태그 사용 가능
+
+
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
