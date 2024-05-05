@@ -27,6 +27,6 @@ fun NavGraphBuilder.drawerScreen() {
         )
     ) { backStackEntry ->
         val id = backStackEntry.arguments?.getString(DRAWER_PROD_ID_ARG) ?: "0"
-        DrawerScreen(id)
+        DrawerScreen({})
     }
 }
