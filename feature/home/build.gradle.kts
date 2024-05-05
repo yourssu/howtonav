@@ -51,7 +51,9 @@ android {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -59,9 +61,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-
     implementation(libs.compose.navigation)
-    implementation(libs.compose.hilt.navigation)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
