@@ -2,15 +2,18 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph_main"
-    app:startDestination="@id/nav_setting">
+    app:startDestination="@id/home_route">
 
     <fragment
-        android:id="@+id/nav_setting"
-        android:name="com.yourssu.setting.SettingFragment" />
+        android:id="@+id/home_route"
+        android:name="com.yourssu.home.HomeFragment">
+        <!--        <deepLink-->
+        <!--            app:uri="https://howtonav.com/home" />-->
+    </fragment>
 
-    <composable
-        android:id="@+id/nav_home_screen"
-        android:name="com.yourssu.home.HomeScreenKt\$Content" />
-
-
+    <fragment
+        android:id="@+id/drawer_route"
+        android:name="com.yourssu.drawer.DrawerFragment">
+        <deepLink app:uri="https://howtonav.com/drawer" />
+    </fragment>
 </navigation>
