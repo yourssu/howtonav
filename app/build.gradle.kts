@@ -65,6 +65,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.compose) // 이 의존성이 있어야 composable 태그 사용 가능
 
     implementation(libs.androidx.activity)
+    implementation(project(":navigation"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
