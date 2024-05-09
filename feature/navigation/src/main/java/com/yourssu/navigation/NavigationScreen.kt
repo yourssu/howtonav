@@ -3,6 +3,10 @@ package com.yourssu.navigation
 import android.app.Activity
 import android.util.Log
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -14,17 +18,14 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
-import com.yourssu.auth.authfeature.TempAuthFeatureScreen
-import com.yourssu.drawer.drawerfeature.addDrawerFeatureRoute
-import com.yourssu.home.homefeature.TempHomeFeatureScreen
 
 @Composable
 fun NavigationScreen() {
@@ -46,9 +47,6 @@ fun NavigationScreen() {
     val firstPath = intent?.data?.pathSegments?.first()
     Log.d("NavigationScreen", "firstPath: $firstPath")
 
-
-    val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
-
     var navigationSelectedItem by remember {
         mutableIntStateOf(
             when (firstPath) {
@@ -63,28 +61,30 @@ fun NavigationScreen() {
     Scaffold(
         bottomBar = {
             NavigationBar {
-                BottomNavigationItem.entries.toList().forEach { item ->
-                    NavigationBarItem(
-                        selected = item.route == currentRoute,
-                        label = { Text(item.label) },
-                        icon = { Icon(item.icon, null) },
-                        onClick = {
-                            navController.navigate(item.route) {
-                                popUpTo(navController.graph.id) {
-                                    saveState = true
+                BottomNavigationItem().bottomNavigationItems()
+                    .forEachIndexed { index, item ->
+                        NavigationBarItem(
+                            selected = index == navigationSelectedItem,
+                            label = { Text(item.label) },
+                            icon = { Icon(item.icon, null) },
+                            onClick = {
+                                navigationSelectedItem = index
+                                navController.navigate(item.route) {
+                                    popUpTo(navController.graph.id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
                                 }
-                                launchSingleTop = true
-                                restoreState = true
                             }
-                        }
-                    )
-                }
+                        )
+                    }
             }
         }
     ) { paddingValues ->
         NavHost(
             navController = navController,
-            startDestination = "HOME/${Type.DATA}",
+            startDestination = "HOME/{data}",
             modifier = Modifier.padding(paddingValues = paddingValues)
         ) {
             composable(
@@ -93,23 +93,23 @@ fun NavigationScreen() {
                     uriPattern = "https://howtonav.com/auth"
                 })
             ) {
-                TempAuthFeatureScreen(navController = navController)
+//                TempAuthFeatureScreen(navController = navController)
             }
             composable(
-                "HOME/{${Type.DATA}}",
+                "HOME/{data}",
                 deepLinks = listOf(navDeepLink {
-                    uriPattern = "https://howtonav.com/home/${Type.MENU}"
+                    uriPattern = "https://howtonav.com/home/{menu}"
                 }),
-                arguments = listOf(navArgument(Type.DATA) {
+                arguments = listOf(navArgument("data") {
                     type = NavType.StringType
                     defaultValue = "DEFAULT_VALUE"
                 })
             ) {
-                val data = it.arguments?.getString(Type.DATA)
-                val menu = it.arguments?.getString(Type.MENU)
-                TempHomeFeatureScreen(menu, data)
+                val data = it.arguments?.getString("data")
+                val menu = it.arguments?.getString("menu")
+//                TempHomeFeatureScreen(menu, data)
             }
-            addDrawerFeatureRoute(navController = navController)
+//            addDrawerFeatureRoute(navController = navController)
         }
     }
 }
