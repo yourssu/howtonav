@@ -113,31 +113,3 @@ fun NavigationScreen() {
         }
     }
 }
-
-data class BottomNavigationItem(
-    val label: String = "",
-    val icon: ImageVector = Icons.Filled.Home,
-    val route: String = "",
-) {
-
-    //function to get the list of bottomNavigationItems
-    fun bottomNavigationItems(): List<BottomNavigationItem> {
-        return listOf(
-            BottomNavigationItem(
-                label = "AUTH",
-                icon = Icons.Filled.AccountCircle,
-                route = "AUTH"
-            ),
-            BottomNavigationItem(
-                label = "HOME",
-                icon = Icons.Filled.Home,
-                route = "HOME/{data}"
-            ),
-            BottomNavigationItem(
-                label = "DRAWER",
-                icon = Icons.Filled.Favorite,
-                route = "DRAWER"
-            ),
-        )
-    }
-}
