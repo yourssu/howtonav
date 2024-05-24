@@ -1,20 +1,18 @@
 package com.yourssu.howtonav
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
-import androidx.navigation.fragment.NavHostFragment
-import com.yourssu.navigtion.NavigationUtil
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import com.yourssu.howtonav.navigation.ui.theme.HowtonavTheme
+import com.yourssu.howtonav.ui.HowtonavApp
 
-class MainActivity : AppCompatActivity(), NavigationUtil {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
-
-    override fun navigateToDrawer() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.container) as NavHostFragment
-        val navController = navHostFragment.navController
-        navController.navigate(deepLink = "https://howtonav.com/drawer".toUri())
+        setContent {
+            HowtonavTheme {
+                HowtonavApp()
+            }
+        }
     }
 }
