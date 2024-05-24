@@ -2,6 +2,7 @@ package com.yourssu.drawer.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavOptions
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
@@ -13,7 +14,8 @@ const val DRAWER_ROUTE_BASE = "drawer"
 const val DRAWER_ROUTE = "drawer/{$DRAWER_PROD_ID_ARG}"
 private const val DEEPLINK_URI_PATTERN = "https://howtonav.com/drawer/{$DRAWER_PROD_ID_ARG}"
 
-fun NavController.navigateDrawer(id: String) = navigate("$DRAWER_ROUTE_BASE/$id")
+fun NavController.navigateToDrawer(id: String, navOptions: NavOptions) =
+    navigate(route = "$DRAWER_ROUTE_BASE/$id", navOptions = navOptions)
 
 fun NavGraphBuilder.drawerScreen() {
     composable(
