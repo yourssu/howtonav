@@ -11,8 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun DrawerScreen(
-    navigateProduct: () -> Unit,
+fun DrawerProductScreen(
+    id: Long,
+    onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -20,9 +21,9 @@ fun DrawerScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("Hello Drawer!", fontSize = 24.sp)
-        Button(onClick = { navigateProduct() }) {
-            Text(text = "product")
+        Text(text = "prod id : $id", fontSize = 24.sp)
+        Button(onClick = onBackClick) {
+            Text(text = "Back")
         }
     }
 }

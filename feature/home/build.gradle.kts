@@ -63,6 +63,9 @@ dependencies {
 
     implementation(libs.compose.navigation)
 
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(project(":navigation"))
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
