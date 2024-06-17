@@ -30,7 +30,7 @@
 
                 <data
                     android:host="howtonav.com"
-                    android:scheme="https" />
+                    android:scheme="rally" />
             </intent-filter>
         </activity>
     </application>

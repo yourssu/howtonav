@@ -12,7 +12,7 @@ import com.yourssu.drawer.DrawerScreen
 const val DRAWER_PROD_ID_ARG = "id"
 const val DRAWER_ROUTE_BASE = "drawer"
 const val DRAWER_ROUTE = "drawer/{$DRAWER_PROD_ID_ARG}"
-private const val DEEPLINK_URI_PATTERN = "https://howtonav.com/drawer/{$DRAWER_PROD_ID_ARG}"
+private const val DEEPLINK_URI_PATTERN = "rally://howtonav.com/drawer/{$DRAWER_PROD_ID_ARG}"
 
 fun NavController.navigateToDrawer(id: String, navOptions: NavOptions) =
     navigate(route = "$DRAWER_ROUTE_BASE/$id", navOptions = navOptions)
